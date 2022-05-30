@@ -4,6 +4,6 @@ streamlit
 dash
 numpy
 plotly
-gspread
+gsheetsdb
 json
 sys
