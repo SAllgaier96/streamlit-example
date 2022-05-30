@@ -4,3 +4,6 @@ streamlit
 dash
 numpy
 plotly
+gspread
+json
+sys
