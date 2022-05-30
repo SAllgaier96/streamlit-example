@@ -1,3 +1,6 @@
 altair
 pandas
 streamlit
+dash
+numpy
+plotly
