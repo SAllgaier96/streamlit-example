@@ -5,5 +5,4 @@ dash
 numpy
 plotly
 gsheetsdb
-json
 sys
