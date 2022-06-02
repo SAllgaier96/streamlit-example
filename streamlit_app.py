@@ -2,7 +2,7 @@
 # Player Analysis Dashboard
 This is a test to see if streamlit can link with google sheets data
 """
-########################### BELOW IS STREAMLIT'S SAMPLE CONNECTION TO FAKE GOOGLE SHEET (HEADERS ARE NAME/PET, ONLY ONE SHEET) ###########################
+
 import streamlit as st
 from google.oauth2 import service_account
 from gsheetsdb import connect
@@ -18,43 +18,44 @@ conn = connect(credentials=credentials)
 
 # Perform SQL query on the Google Sheet.
 # Uses st.cache to only rerun when the query changes or after 10 min.
-@st.cache(ttl=600)
-def run_query(query):
+@st.cache(ttle=600)
+def run_query(query)
     rows = conn.execute(query, headers=1)
     rows = rows.fetchall()
     return rows
 
-sheet_url = st.secrets["private_gsheets_url"]
+sheet_url = st.secrets["PlayerOllie_gsheets_url"]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 
 # Print results.
-for row in rows:
-    st.write(f"{row.name} has a :{row.pet}:")
-    
-    
-########################### BELOW IS MY CONNECTION FROM PLAYER ANALYSIS FILE ###########################
-try:
-    print('Starting Data Pull...')
-    WORKSHEET_ID = '1-kUlYLeDEQyzw2PYnLn6quq7kFYJbduI_Zrk_bQ7_9A'
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    path = 'assets/creds.json'
-    google_key_file = path
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(google_key_file, scope)
-    gc = gspread.authorize(credentials)
-    
-    # Opening the workbook
-    workbook = gc.open_by_key(WORKSHEET_ID)
+st.write(f'PlayerOllie tab successfully loaded, contains {sum(rows.GameID)} rows')
+st.write(f'URL: {st.secrets["private_gsheets_url"]}')
 
-    # Opening separate worksheets
-    PullingData = workbook.worksheet('PullingData')
-    PlayerOllie = workbook.worksheet('PlayerOllie')
-    TeamOllie = workbook.worksheet('TeamOllie')
-    RosterOverview = workbook.worksheet('RosterOverview')
+# for row in rows:
+#     st.write(f"{row.name} has a :{row.pet}:")
     
-    print('Data Pull SUCCESS')
-except Exception as e:
-    print('Data Pull FAILED')
+############################## BELOW IS ANOTHER QUERY FROM BEFORE THAT HASN'T BEEN TESTED YET #######################################
+# try
+#     st.write(f'Starting Data Pull...')
+#     WORKSHEET_ID = '1-kUlYLeDEQyzw2PYnLn6quq7kFYJbduI_Zrk_bQ7_9A'
+#     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+#     path = 'assets/creds.json'
+#     google_key_file = path
+#     credentials = ServiceAccountCredentials.from_json_keyfile_name(google_key_file, scope)
+#     gc = gspread.authorize(credentials)
     
+#     # Opening the workbook
+#     workbook = gc.open_by_key(WORKSHEET_ID)
+
+#     # Opening separate worksheets
+#     PullingData = workbook.worksheet('PullingData')
+#     PlayerOllie = workbook.worksheet('PlayerOllie')
+#     TeamOllie = workbook.worksheet('TeamOllie')
+#     RosterOverview = workbook.worksheet('RosterOverview')
+    
+#     print('Data Pull SUCCESS')
+# except Exception as e:
+#     print('Data Pull FAILED')
     
 ########################### BELOW IS STREAMLIT SAMPLE OUTPUT NOT CONNECTING TO ANYTHING #############################################
 
