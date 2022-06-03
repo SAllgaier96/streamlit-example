@@ -3,7 +3,7 @@
 This is a test to see if streamlit can link with google sheets data
 """
 
-
+st.write(f"This works! Don't lose hope Spencer :)")
 
 ############################## BELOW IS GOOGLE SPREADSHEET QUERY THAT HAS ENCRYPTION/FORMATTING ISSUES #######################################
 # import streamlit as st
