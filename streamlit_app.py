@@ -5,7 +5,7 @@ This is a test to see if streamlit can link with google sheets data
 import streamlit as st
 
 st.write(f"This works! Don't lose hope Spencer :)")
-print(f"This also works, why not just use print statements instead of st.write?")
+
 ############################## BELOW IS GOOGLE SPREADSHEET QUERY THAT HAS ENCRYPTION/FORMATTING ISSUES #######################################
 # import streamlit as st
 # from google.oauth2 import service_account
